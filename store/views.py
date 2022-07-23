@@ -12,9 +12,10 @@ def categories(request):
     }
 
 
-def all_products(request):
-    products = Product.products.all()
-    return render(request, 'store/home.html', {'products': products})
+def all_products(request): # This is to display our produts in the DB on the home page. 
+    products = Product.objects.all()  #It is equivalent to SQL query 'SELECT ALL FROM PRODUCTS'. This will grab the data
+    return render(request, 'store/home.html', {'products': products}) # MAking the above data available(render) on home page(template).
+    # 'products' will be referring to the data stored in the variable products(ie. Product.objects.all()) 'objects.all()' retreives all the data
 
 
 def category_list(request, category_slug=None):
