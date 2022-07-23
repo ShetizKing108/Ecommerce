@@ -9,6 +9,9 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'categories'
 
+    def get_absolute_url(self): # To build the URls dynamically. To make this work we must add details in the urls.py
+        return reverse('store:product_detail', args={self.slug})
+
     def __str__(self) -> str:
         return self.name
     
