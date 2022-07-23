@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.urls import reverse
+from django.urls import reverse  # reverse will help us build url dynamically from our DB
 
 class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
@@ -32,6 +32,11 @@ class Product(models.Model):
     class Meta:
         verbose_name_plural = 'Products'
         ordering = ('-created',)
+
+    
+    def get_absolute_url(self): # To build the URls dynamically
+        return reverse('store:product_detail', args={self.slug}) #From the app called store, generate url with name equivalent to 'product_detail'
+    
 
     def __str__(self):
         return self.title

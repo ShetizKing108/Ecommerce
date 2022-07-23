@@ -24,6 +24,11 @@ def category_list(request, category_slug=None):
     return render(request, 'store/products/category.html', {'category': category, 'products': products})
 
 
-def product_detail(request, slug):
-    product = get_object_or_404(Product, slug=slug, in_stock=True)
+def product_detail(request, slug): # This will display our individual products(Books). We will link this to the URLS
+    product = get_object_or_404(Product, slug=slug, in_stock=True) 
+    """
+    get_object will retrieeve data from the DB. 'Product coz we want Product data. slug=slug is used in urls.py. It is used to retrieve the product
+    from the dataBase slug variable(thata holdds the slugfield) and store it in the slug variable
+
+    """
     return render(request, 'store/products/detail.html', {'product': product})
