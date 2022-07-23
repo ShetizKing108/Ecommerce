@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
-from django.urls import reverse  # reverse will help us build url dynamically from our DB
+from django.urls import \
+    reverse  # reverse will help us build url dynamically from our DB
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
