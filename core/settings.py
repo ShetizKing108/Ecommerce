@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-)3&_*7i$41hw__lk6m2bjaheti9gn3dxpg2nvgjs-_@jn$jf4s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['yourdomain.com', '127.0.0.1']
 
 
 # Application definition
@@ -65,14 +65,13 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'store.context_processors.categories',
-                
             ],
         },
     },
 ]
 """
-Every page we visit we will have access to the category view(ie. categore data). The context processor makes the context data available 
-to all the templates Earlier(early stage of project) passed as 'store.views.categories' is now changed to 'store.context_processors.categories' 
+Every page we visit we will have access to the category view(ie. categore data). The context processor makes the context data available
+to all the templates Earlier(early stage of project) passed as 'store.views.categories' is now changed to 'store.context_processors.categories'
 to follow the general covention.
 """
 WSGI_APPLICATION = 'core.wsgi.application'

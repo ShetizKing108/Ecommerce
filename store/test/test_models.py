@@ -15,8 +15,8 @@ class TestCategoriesModel(TestCase):
         Test Category model data insertion/types/field attributes
         """
         data = self.data1
-        self.assertTrue(isinstance(data, Category)) # isinstancce checks if the data(we have created in setUp above) fits our model called 'Category'
-        self.assertEqual(str(data), 'django') # The str(data) entered should match 'django'
+        self.assertTrue(isinstance(data, Category))  # isinstancce checks if the data(we have created in setUp above) fits our model called 'Category'
+        self.assertEqual(str(data), 'django')  # The str(data) entered should match 'django'
 
 
 class TestProductsModel(TestCase):

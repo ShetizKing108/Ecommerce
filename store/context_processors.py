@@ -7,5 +7,5 @@ from .models import Category
 
 def categories(request):
     return {
-        'categories': Category.objects.all() # In the dropdown all the categories will be returned/displayed
+        'categories': Category.objects.all()  # In the dropdown all the categories will be returned/displayed
     }

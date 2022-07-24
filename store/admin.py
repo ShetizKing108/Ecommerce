@@ -6,9 +6,9 @@ from .models import Category, Product
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin): # we are extending from Admin to ModelAdmin
-    list_display = ['name', 'slug'] # these are the two things that we want to be displayed for the admin
-    prepopulated_fields = {'slug': ('name',)} # Slug will be populated with what we have typed into the name
+class CategoryAdmin(admin.ModelAdmin):  # we are extending from Admin to ModelAdmin
+    list_display = ['name', 'slug']  # these are the two things that we want to be displayed for the admin
+    prepopulated_fields = {'slug': ('name',)}  # Slug will be populated with what we have typed into the name
 
 
 @admin.register(Product)

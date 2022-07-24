@@ -20,7 +20,7 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('store.urls', namespace='store')) # store.urls is the address of the urls file and 'namespace' will be useful to include URL as a link on our html pages
+    path('', include('store.urls', namespace='store'))  # store.urls is the address of the urls file and 'namespace' will be useful to include URL as a link on our html pages
 ]
 
 if settings.DEBUG:

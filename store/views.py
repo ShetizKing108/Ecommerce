@@ -4,9 +4,9 @@ from django.shortcuts import get_object_or_404, render
 from .models import Category, Product
 
 
-def all_products(request): # This is to display our produts in the DB on the home page. 
-    products = Product.objects.all()  #It is equivalent to SQL query 'SELECT ALL FROM PRODUCTS'. This will grab the data
-    return render(request, 'store/home.html', {'products': products}) # MAking the above data available(render) on home page(template).
+def product_all(request):  # This is to display our produts in the DB on the home page.
+    products = Product.products.all()  # Product.objects.all() is equivalent to SQL query 'SELECT ALL FROM PRODUCTS'. This will grab the data
+    return render(request, 'store/home.html', {'products': products})  # MAking the above data available(render) on home page(template).
     # 'products' will be referring to the data stored in the variable products(ie. Product.objects.all()) 'objects.all()' retreives all the data
 
 
@@ -16,11 +16,11 @@ def category_list(request, category_slug=None):
     return render(request, 'store/products/category.html', {'category': category, 'products': products})
 
 
-def product_detail(request, slug): # This will display our individual products(Books). We will link this to the URLS
-    product = get_object_or_404(Product, slug=slug, in_stock=True) 
+def product_detail(request, slug):  # This will display our individual products(Books). We will link this to the URLS
+    product = get_object_or_404(Product, slug=slug, in_stock=True)
     """
     get_object will retrieeve data from the DB. 'Product coz we want Product data. slug=slug is used in urls.py. It is used to retrieve the product
     from the dataBase slug variable(thata holdds the slugfield) and store it in the slug variable
 
     """
-    return render(request, 'store/products/detail.html', {'product': product})
+    return render(request, 'store/products/single.html', {'product': product})
