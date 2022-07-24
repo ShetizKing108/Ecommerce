@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.sessions',  # This is why we have the session DB by default
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store',
