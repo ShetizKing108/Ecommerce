@@ -64,12 +64,16 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'store.views.categories', # Every page we visit we will have access to the category view(ie. categore data)
+                'store.context_processors.categories',
+                
             ],
         },
     },
 ]
-
+"""Every page we visit we will have access to the category view(ie. categore data). The context processor makes the context data available 
+to all the templates Earlier(early stage of project) passed as 'store.views.categories' is now changed to 'store.context_processors.categories' 
+to follow the general covention.
+"""
 WSGI_APPLICATION = 'core.wsgi.application'
 
 
