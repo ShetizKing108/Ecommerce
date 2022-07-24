@@ -66,14 +66,20 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'store.context_processors.categories',
+                'basket.context_processors.basket',
             ],
         },
     },
 ]
 """
-Every page we visit we will have access to the category view(ie. categore data). The context processor makes the context data available
-to all the templates Earlier(early stage of project) passed as 'store.views.categories' is now changed to 'store.context_processors.categories'
-to follow the general covention.
+context_processors are used in cases where we want to run the code at all point ie. They come in handy when you need to make something available 
+globally to all templates.
+Ex:
+Every page we visit we will have access to the category view(ie. categore drop down will be displayed on all pages). 
+The context processor makes the context data available to all the templates.
+Earlier(early stage of project) registered as 'store.views.categories' is now changed to 'store.context_processors.categories'
+to follow the general covention. Similarly adding 'basket.context_processors.basket' will ensure that which ever page user visits,
+a session will be generated and stored. 
 """
 WSGI_APPLICATION = 'core.wsgi.application'
 
