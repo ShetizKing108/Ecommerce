@@ -70,7 +70,8 @@ TEMPLATES = [
         },
     },
 ]
-"""Every page we visit we will have access to the category view(ie. categore data). The context processor makes the context data available 
+"""
+Every page we visit we will have access to the category view(ie. categore data). The context processor makes the context data available 
 to all the templates Earlier(early stage of project) passed as 'store.views.categories' is now changed to 'store.context_processors.categories' 
 to follow the general covention.
 """

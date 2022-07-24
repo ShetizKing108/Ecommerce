@@ -4,6 +4,11 @@ from django.urls import \
     reverse  # reverse will help us build url dynamically from our DB
 
 
+class ProductManager(models.Manager): # Created during refactoring to ensure products not active are not displayed
+    def get_queryset(self):
+        return super(ProductManager, self).get_queryset().filter(is_active=True)
+
+
 class Category(models.Model):
     name = models.CharField(max_length=255, db_index=True)
     slug = models.SlugField(max_length=255, unique= True)
@@ -32,6 +37,7 @@ class Product(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     objects = models.Manager()
+    products = ProductManager()
     
 
     class Meta:
