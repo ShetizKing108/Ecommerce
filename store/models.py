@@ -43,7 +43,11 @@ class Product(models.Model):
         ordering = ('-created',)
 
     def get_absolute_url(self):  # To build the URls dynamically
-        return reverse('store:product_detail', args={self.slug})  #From the app called store, generate url with name equivalent to 'product_detail'
-    
+        return reverse('store:product_detail', args=[self.slug])  #From the app called store, generate url with name equivalent to 'product_detail'
+    """
+        When the user clicks on the link we want our browser to generate a link/url which holds a unique slug. This is to be done dynamically.
+        So using the reverse function, we generate the requuired data which generates the url, which is then matched with the URL Patterns,
+        thus getting redirected to Views.py and finally returning a Template.
+    """
     def __str__(self):
         return self.title
