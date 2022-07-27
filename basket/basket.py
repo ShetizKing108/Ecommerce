@@ -12,22 +12,24 @@ class Basket():
     """
 
     def __init__(self, request):  # __init__ ftn is added so that whatever page the user may visit this ftn will be called and session will be created
-        self.session = request.session
+        self.session = request.session  # The session info is contained within the http request. Hence we do requet.session to grab that data.
         basket = self.session.get('skey')   # We will use skey(session key) to check in the browser if the user has visited us before
         if 'skey' not in request.session:
-            basket = self.session['skey'] = {}  # if there is no session key we will initiate an empty basket
+            basket = self.session['skey'] = {}  # if there is no session key we will initiate an empty basket. The assignment used here is called 'chained assignment'
         self.basket = basket  # If user already has a key and has some items in the basket, we will set the value to what it was
-
+        """
+        Becaue we want this to be available on all the pages, we will go ahead and create a context processor and add it to the settings.        
+        """
     def add(self, product, qty):
         """
         Adding and updating the users basket session data
         """
         product_id = str(product.id)
 
-        if product_id in self.basket:
+        if product_id in self.basket:  # basket contains the session info. So we are checking if the product_id collected from user matches with the product.id in their basket
             self.basket[product_id]['qty'] = qty
         else:
-            self.basket[product_id] = {'price': str(product.price), 'qty': qty}
+            self.basket[product_id] = {'price': str(product.price), 'qty': qty}  # Price is got from the model.py file Project class. So if the product id doesn't exist, we will create it and add the price.
 
         self.save()
 

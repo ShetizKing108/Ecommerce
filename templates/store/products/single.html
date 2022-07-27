@@ -18,7 +18,7 @@
                     <div class="col border-bottom">
                         <div class="row p-3">
                             <div class="col-6">Hardback</div>
-                            <div class="col-6 text-end"><span class="h4 fw-bold">£{{ product.price }}</span></div>
+                            <div class="col-6 text-end"><span class="h4 fw-bold">Rs.{{ product.price }}</span></div>
                         </div>
                     </div>
                     <div class="col">
@@ -49,17 +49,17 @@
         e.preventDefault();
         $.ajax({
             type: 'POST', //post will send data to the server
-            url: '{% url "basket:basket_add" %}',
+            url: '{% url "basket:basket_add" %}',  // We want the data to be directed towards basket_add
             data: {
                 productid: $('#add-button').val(),
                 productqty: $('#select option:selected').text(),
                 csrfmiddlewaretoken: "{{csrf_token}}",
-                action: 'post'
+                action: 'post'   // Till this point we have sent/redirected some data to the server and now we can expect some response
             },
             success: function (json) {
-               document.getElementById("basket-qty").innerHTML = json.qty
+               document.getElementById("basket-qty").innerHTML = json.qty   // The response will be in the JSON format and we have referenced it as JSON.
             },
-            error: function (xhr, errmsg, err) {}
+            error: function (xhr, errmsg, err) {}   // Here we will be referencing the error message.
         });
     })
 </script>

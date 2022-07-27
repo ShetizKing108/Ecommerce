@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
+from django.shortcuts import render
 
 from store.models import Product
 
@@ -12,15 +13,15 @@ def basket_summary(request):
 
 
 def basket_add(request):
-    basket = Basket(request)
-    if request.POST.get('action') == 'post':
-        product_id = int(request.POST.get('productid'))
+    basket = Basket(request)  # here we are grabing the session data from the class Basket and savig it in a the variable baket
+    if request.POST.get('action') == 'post':    # We are ensuring that the request received from AJAX is POST
+        product_id = int(request.POST.get('productid'))   # Here we are grabbing the productid from the single.html
         product_qty = int(request.POST.get('productqty'))
-        product = get_object_or_404(Product, id=product_id)
-        basket.add(product=product, qty=product_qty)
+        product = get_object_or_404(Product, id=product_id)  # Using the product ID we are retrieving the data from DB
+        basket.add(product=product, qty=product_qty)  # We are sending some data to the add function of view.py so that it performs necessary action.
 
         basketqty = basket.__len__()
-        response = JsonResponse({'qty': basketqty})
+        response = JsonResponse({'qty': basketqty})   # 
         return response
 
 
