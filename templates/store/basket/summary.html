@@ -3,11 +3,11 @@
 {% block title %}Basket Summary{% endblock %}
 {% block content %}
 
-<main class="pt-5">
+<main class="pt-5"> 
   <div class="container">
-    <h1 class="h5">Shopping basket</h1>
-    {% for item in basket %}
-    {% with product=item.product %}
+    <h1 class="h5">Shopping basket</h1> 
+    {% for item in basket %}  <!--For any item in the basket we want to get the item info. So we will loop through them and get the data from DB-->
+    {% with product=item.product %}  <!--without this line no product details except price and qty can be displayed. So we know it captures the product details-->
     <div data-index="{{product.id}}" class="row mb-4 border product-item">
       <div class="col-md-3 col-lg-2 order-md-first bg-light">
         <img class="img-fluid mx-auto d-block" width="120px" alt="Responsive image" src="{{ product.image.url }}">
@@ -20,7 +20,7 @@
           <div class="col border-bottom">
             <div class="row p-3">
               <div class="col-6">Hardback Book</div>
-              <div class="col-6 text-end"><span class="h6 fw-bold">£{{ product.price }}</span></div>
+              <div class="col-6 text-end"><span class="h6 fw-bold">RS.{{ product.price }}</span></div>
             </div>
           </div>
           <div class="col">

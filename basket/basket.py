@@ -33,16 +33,16 @@ class Basket():
 
         self.save()
 
-    def __iter__(self):
+    def __iter__(self):  # we are making this class iterable so that we can grab the data from DB
         """
         Collect the product_id in the session data to query the database
         and return products
         """
-        product_ids = self.basket.keys()
-        products = Product.products.filter(id__in=product_ids)
-        basket = self.basket.copy()
+        product_ids = self.basket.keys()  # here product id is the key()
+        products = Product.products.filter(id__in=product_ids)  # From DB Product, we are getting products(that which is active) and grab the ones whose product id is equal to session id(collected from browser?)
+        basket = self.basket.copy()  # we have made a copy of the basket info
 
-        for product in products:
+        for product in products:    # We are going to loop through each product added and add some data 'product' into it
             basket[str(product.id)]['product'] = product
 
         for item in basket.values():
@@ -54,7 +54,7 @@ class Basket():
         """
         Get the basket data and count the qty of items
         """
-        return sum(item['qty'] for item in self.basket.values())
+        return sum(item['qty'] for item in self.basket.values())   # The number of items added will be saved in the basket
 
     def update(self, product, qty):
         """
@@ -80,7 +80,7 @@ class Basket():
             self.save()
 
     def save(self):
-        self.session.modified = True
+        self.session.modified = True   # Instead of writting "self.session.modified = True" each time we created a ftn and call it when required.
 
 
 

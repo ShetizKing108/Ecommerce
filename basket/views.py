@@ -8,12 +8,12 @@ from .basket import Basket
 
 
 def basket_summary(request):
-    basket = Basket(request)
+    basket = Basket(request)   # here we are instanciating the object of the class Basket
     return render(request, 'store/basket/summary.html', {'basket': basket})
 
 
 def basket_add(request):
-    basket = Basket(request)  # here we are grabing the session data from the class Basket and savig it in a the variable baket
+    basket = Basket(request)  # We are creating an Object and here we are grabing the session data from the class Basket and savig it in a the variable basket. 
     if request.POST.get('action') == 'post':    # We are ensuring that the request received from AJAX is POST
         product_id = int(request.POST.get('productid'))   # Here we are grabbing the productid from the single.html
         product_qty = int(request.POST.get('productqty'))
@@ -27,9 +27,9 @@ def basket_add(request):
 
 def basket_delete(request):
     basket = Basket(request)
-    if request.POST.get('action') == 'post':
+    if request.POST.get('action') == 'post':    # Getting details from ajax request data
         product_id = int(request.POST.get('productid'))
-        basket.delete(product=product_id)
+        basket.delete(product=product_id)    # We just need the product id unlike previous case where we needed the qty as well
 
         basketqty = basket.__len__()
         baskettotal = basket.get_total_price()
@@ -43,6 +43,9 @@ def basket_update(request):
         product_id = int(request.POST.get('productid'))
         product_qty = int(request.POST.get('productqty'))
         basket.update(product=product_id, qty=product_qty)
+
+        # print(product_id)  # Whenever we update our basket, we can check if it working right as the values are printed on the terminal
+        # print(product_qty)
 
         basketqty = basket.__len__()
         baskettotal = basket.get_total_price()

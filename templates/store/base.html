@@ -55,7 +55,7 @@
                         <a type="button" role="button" href="{% url 'basket:basket_summary' %}"
                             class="btn btn-outline-secondary">
 
-                            {% with total_qty=basket|length %}
+                            {% with total_qty=basket|length %}    <!-- We are collecting the 'basket' from context_processor-->
                             <div id="basket-qty" class="d-inline-flex">
                                 {% if total_qty > 0 %}
                                 {{ total_qty }}
