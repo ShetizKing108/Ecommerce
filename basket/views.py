@@ -9,7 +9,7 @@ from .basket import Basket
 
 def basket_summary(request):
     basket = Basket(request)   # here we are instanciating the object of the class Basket
-    return render(request, 'store/basket/summary.html', {'basket': basket})
+    return render(request, 'basket/summary.html', {'basket': basket})
 
 
 def basket_add(request):
