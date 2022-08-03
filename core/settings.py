@@ -158,7 +158,7 @@ BASKET_SESSION_ID = 'basket'
 Here we are setting the custome user model. AUTH_USER_MODEL tells django where the defauld user model will be placed.
 
 """
-AUTH_USER_MODEL = 'account.UserBase'   # In account app, class calledd UserBase
+AUTH_USER_MODEL = 'account.UserBase'   # In account app, class called UserBase will act as the model/create DB
 LOGIN_REDIRECT_URL = '/account/dashboard'
 LOGIN_URL = '/account/login/'
 

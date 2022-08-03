@@ -14,7 +14,7 @@ from django.utils.translation import gettext_lazy as _   # This is used for tran
 from django_countries.fields import CountryField
 
 
-class CustomAccountManager(BaseUserManager):
+class CustomAccountManager(BaseUserManager):   # this will specify how user data is saved in the DB
 
     def create_superuser(self, email, user_name, password, **other_fields):
 
@@ -29,13 +29,13 @@ class CustomAccountManager(BaseUserManager):
             raise ValueError(
                 'Superuser must be assigned to is_superuser=True.')
 
-        return self.create_user(email, user_name, password, **other_fields)
+        return self.create_user(email, user_name, password, **other_fields)  # email is written first because it is the username now(we have set below check end of this page)
 
     def create_user(self, email, user_name, password, **other_fields):    # Email, username and password are the minimum parameters required to create user
         if not email:
             raise ValueError(_('You must provide an email address'))    # _ is used coz this might have to be translated into different language.
 
-        email = self.normalize_email(email)
+        email = self.normalize_email(email)   # This will check if the email is in proper format
         user = self.model(email=email, user_name=user_name,
                           **other_fields)
         user.set_password(password)
