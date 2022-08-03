@@ -32,16 +32,16 @@ class RegistrationForm(forms.ModelForm):
         model = UserBase
         fields = ('user_name', 'email',)
 
-    def clean_user_name(self):
-        user_name = self.cleaned_data['user_name'].lower()
-        r = UserBase.objects.filter(user_name=user_name)
-        if r.count():
+    def clean_user_name(self):   # This is run to ensure that the same user name doesn't exist in the DB
+        user_name = self.cleaned_data['user_name'].lower()  # The user_name is grabbed and stored in the variable 'user_name'
+        r = UserBase.objects.filter(user_name=user_name)   # We access the UserBase table and check if any of the fields matches the user_name entered by the user
+        if r.count():  # If the count == 1(True), then the user already exists
             raise forms.ValidationError("Username already exists")
         return user_name
 
-    def clean_password2(self):
+    def clean_password2(self):   # To check if the password entered matches the re-entered password
         cd = self.cleaned_data
-        if cd['password'] != cd['password2']:
+        if cd['password'] != cd['password2']:    # Check if this is regular expressions
             raise forms.ValidationError('Passwords do not match.')
         return cd['password2']
 
@@ -53,7 +53,7 @@ class RegistrationForm(forms.ModelForm):
         return email
 
     def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)   # Through super() we are accessing the fields and updating them using widgets and bootstrap styles
         self.fields['user_name'].widget.attrs.update(
             {'class': 'form-control mb-3', 'placeholder': 'Username'})
         self.fields['email'].widget.attrs.update(
