@@ -3,6 +3,7 @@
  So we can either go ahead and extend thi user model or we can use a completly different user model.
  Here we will go ahead and build upon/extend the BaseUserManager to overwrite the account management of say superuser
  The AbstractBaseUSer help us to build our own user model. PermissionsMixin will build some default permissions to our tables
+ Before making new migrations/creating DB, we have to delete old DB and migration files. Else we get an error
 """
 
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager, PermissionsMixin)
@@ -30,10 +31,9 @@ class CustomAccountManager(BaseUserManager):
 
         return self.create_user(email, user_name, password, **other_fields)
 
-    def create_user(self, email, user_name, password, **other_fields):
-
+    def create_user(self, email, user_name, password, **other_fields):    # Email, username and password are the minimum parameters required to create user
         if not email:
-            raise ValueError(_('You must provide an email address'))
+            raise ValueError(_('You must provide an email address'))    # _ is used coz this might have to be translated into different language.
 
         email = self.normalize_email(email)
         user = self.model(email=email, user_name=user_name,
