@@ -23,7 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('store.urls', namespace='store')),  # store.urls is the address of the urls file and 'namespace' will be useful to include URL as a link on our html pages
     path('basket/', include('basket.urls', namespace='basket')),
-    #path('payment/', include('payment.urls', namespace='payment')),
+    path('payment/', include('payment.urls', namespace='payment')),
     path('account/', include('account.urls', namespace='account')),
     #path('orders/', include('orders.urls', namespace='orders')),
 ]
