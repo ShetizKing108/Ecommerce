@@ -24,13 +24,13 @@ def dashboard(request):
 
 @login_required
 def edit_details(request):
-    if request.method == 'POST':
+    if request.method == 'POST':   # when the user edits and updates the dashboard/profile, we recive the POST request and pass the user_form
         user_form = UserEditForm(instance=request.user, data=request.POST)
 
-        if user_form.is_valid():
+        if user_form.is_valid():   # If the contents are valid, we save the details
             user_form.save()
     else:
-        user_form = UserEditForm(instance=request.user)
+        user_form = UserEditForm(instance=request.user)   # Simply show the form
 
     return render(request,
                   'account/user/edit_details.html', {'user_form': user_form})

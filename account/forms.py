@@ -92,7 +92,7 @@ class UserEditForm(forms.ModelForm):
     email = forms.EmailField(
         label='Account email (can not be changed)', max_length=200, widget=forms.TextInput(
             attrs={'class': 'form-control mb-3', 'placeholder': 'email', 'id': 'form-email', 'readonly': 'readonly'}))
-
+# We add the readonly attribute when we don't want the user to be able to change a certain field. Ex:Email id/user name ect which are used tto uniquely identify him/her
     user_name = forms.CharField(
         label='Firstname', min_length=4, max_length=50, widget=forms.TextInput(
             attrs={'class': 'form-control mb-3', 'placeholder': 'Username', 'id': 'form-firstname', 'readonly': 'readonly'}))
