@@ -1,6 +1,6 @@
 import json
 
-#import stripe
+import stripe
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponse
 from django.shortcuts import render
@@ -29,14 +29,14 @@ def BasketView(request):
     total = total.replace('.', '')
     total = int(total)
 
-    # stripe.api_key = ''
-    # intent = stripe.PaymentIntent.create(
-        # amount=total,
-        # currency='gbp',
-        # metadata={'userid': request.user.id}
-   # )
+    stripe.api_key = 'pk_test_51LT88hSILLFVw0fg6JnPN2Y4wp4YyhN36Q9xQGCAJudRuLZEari04JxRqtDYRrfzrCQnxf71YQ5LrdzqKObv0Eg800Tas5jwyx'
+    intent = stripe.PaymentIntent.create(
+        amount=total,
+        currency='INR',
+        metadata={'userid': request.user.id}
+   )
 
-    return render(request, 'payment/home.html', )#{'client_secret': intent.client_secret})
+    return render(request, 'payment/home.html', {'client_secret': intent.client_secret})  # Client secret is a unique id generated for each payment
 
 """
 @csrf_exempt
