@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic.base import TemplateView
 
 from basket.basket import Basket
-# from orders.views import payment_confirmation
+from orders.views import payment_confirmation
 
 
 def order_placed(request):
@@ -36,9 +36,9 @@ def BasketView(request):
         metadata={'userid': request.user.id}
    )
 
-    return render(request, 'payment/home.html', {'client_secret': intent.client_secret})  # Client secret is a unique id generated for each payment
+    return render(request, 'payment/home.html', {'client_secret': intent.client_secret})  # Client secret is a unique id generated for each paym
 
-"""
+
 @csrf_exempt
 def stripe_webhook(request):
     payload = request.body
@@ -60,4 +60,3 @@ def stripe_webhook(request):
         print('Unhandled event type {}'.format(event.type))
 
     return HttpResponse(status=200)
-"""
